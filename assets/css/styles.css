@@ -6,6 +6,10 @@
     font-family: 'Roboto Mono', sans-serif;
 }
 
+body {
+    background: #CCC9E7;
+}
+
 #game-heading {
     text-align: center;
     margin-top: 5vh;
@@ -27,6 +31,10 @@
   
 .cell {
     width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
 }
 
 #x-score-outer, #o-score-outer {
@@ -45,12 +53,17 @@
 }
 
 #start-btn{
-    height: 50px;
-    width: 100px;
-    font-size: large;
+    height: 75px;
+    width: 125px;
+    font-size: x-large;
     text-transform: uppercase;
     border: none;
-    background-color: bisque;
+    background-color: #F5EE9E;
+    border-radius: 10px;
+}
+
+#start-btn:hover{
+    cursor: pointer;
 }
 
 .row-1, .row-2 {
@@ -59,4 +72,20 @@
 
 .col-1, .col-2 {
     border-right: 2px solid black;
+}
+
+@media (max-width: 850px) {
+    .grid-outer {
+        grid-template-rows: 100px 100px 100px;
+    }
+    .cell{
+        width: 100px;
+    }
+    #x-score-outer h2, #o-score-outer h2{
+        font-size: 1rem;
+    }
+    #x-score, #o-score {
+        padding-top: 10vh;
+        font-size: 2rem;
+    }
 }
