@@ -12,12 +12,17 @@ function runGame(){
 }
 
 function placePawn(cell){
+    if (cell.innerHTML === 'x' || cell.innerHTML === 'o'){
+        alert('That cell is busy! Please pick another one');
+        return;
+    }
     cell.innerHTML = whoPlays;
     whoPlays = whoPlays === 'x' ? 'o' : 'x';
+
+    checkWin();
 }
 
 function checkWin(){
-    
 }
 
 function incrementScore(){
