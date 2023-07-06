@@ -86,7 +86,20 @@ function checkWin(){
 
 function incrementScore(winner){
     let score = winner === 'x' ? document.getElementById('x-score') : document.getElementById('o-score');
+    let oppScore = winner === 'x' ? document.getElementById('o-score') : document.getElementById('x-score');
     scoreNum = parseInt(score.innerHTML);
+    oppScoreNum = parseInt(oppScore.innerHTML);
     scoreNum += 1;
     score.innerHTML = scoreNum;
+
+    if (scoreNum > oppScoreNum){
+        score.style.color = 'green';
+        oppScore.style.color = 'red';
+    } else if (scoreNum < oppScoreNum){
+        score.style.color = 'red';
+        oppScore.style.color = 'green';
+    } else {
+        score.style.color = 'black';
+        oppScore.style.color = 'black';
+    }
 }
