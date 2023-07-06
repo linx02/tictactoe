@@ -42,7 +42,7 @@ body {
 }
 
 #x-score, #o-score {
-    padding-top: 20vh;
+    padding-top: 17vh;
     font-size: 5rem;
 }
 
@@ -96,7 +96,7 @@ body {
     }
     #x-score-outer, #o-score-outer {
         position: absolute;
-        top: 38vh;
+        top: 45vh;
     }
     #x-score-outer {
         left: 10vw;
