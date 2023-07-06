@@ -67,22 +67,42 @@ function checkWin(){
         }
     }
 
+
     console.log(`X has : ${x} and O has : ${o}`);
 
     for (let combo of winCombos){
         let result = combo.every(num => x.includes(num));
         if (result === true) {
-            alert('X won');
+            alert('X won this game! :D');
             incrementScore('x');
+
+            let grid = document.getElementsByClassName('cell');
+            
+            for(let cell of grid){
+                cell.removeEventListener('click', placePawn)
+            }
+
+            return;
         }
     }
     for (let combo of winCombos){
         let result = combo.every(num => o.includes(num));
         if (result === true) {
-            alert('O won');
+            alert('O won this game! :D');
             incrementScore('o');
+
+            let grid = document.getElementsByClassName('cell');
+            
+            for(let cell of grid){
+                cell.removeEventListener('click', placePawn)
+            }
+
+            return;
         }
     }
+    if(x.length + o.length === 9){
+        alert("It's a Draw! D:");
+    } 
 
 }
 
