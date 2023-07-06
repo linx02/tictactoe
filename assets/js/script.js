@@ -1,9 +1,17 @@
 let whoPlays = Math.random() < 0.5 ? 'x' : 'o';
 let occupied = {};
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('start-btn').addEventListener('click', function(){
+        runGame();
+    })
+});
+
 function runGame(){
     let grid = document.getElementsByClassName('cell');
     document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} starts!`
+
+    document.getElementById('start-btn').innerHTML = 'reset';
 
     for(let cell of grid){
         cell.addEventListener('click', function(){
@@ -22,6 +30,8 @@ function placePawn(cell){
     occupied[cell.id] = whoPlays;
 
     whoPlays = whoPlays === 'x' ? 'o' : 'x';
+
+    document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} plays!`;
 
     checkWin();
 }
@@ -75,5 +85,3 @@ function incrementScore(winner){
     scoreNum += 1;
     score.innerHTML = scoreNum;
 }
-
-runGame();
