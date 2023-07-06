@@ -8,26 +8,31 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function runGame(){
+
+    occupied = {};
+
     let grid = document.getElementsByClassName('cell');
     document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} starts!`
 
     document.getElementById('start-btn').innerHTML = 'reset';
 
     for(let cell of grid){
-        cell.addEventListener('click', function(){
-            placePawn(cell);
-        });
+
+        cell.innerHTML = '';
+
+        cell.removeEventListener('click', placePawn);
+        cell.addEventListener('click', placePawn);
     }
 }
 
-function placePawn(cell){
-    if (cell.innerHTML === 'x' || cell.innerHTML === 'o'){
+function placePawn(){
+    if (this.innerHTML === 'x' || this.innerHTML === 'o'){
         alert('That cell is busy! Please pick another one');
         return;
     }
-    cell.innerHTML = whoPlays;
+    this.innerHTML = whoPlays;
 
-    occupied[cell.id] = whoPlays;
+    occupied[this.id] = whoPlays;
 
     whoPlays = whoPlays === 'x' ? 'o' : 'x';
 
