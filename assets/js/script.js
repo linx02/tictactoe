@@ -2,14 +2,39 @@ let whoPlays = Math.random() < 0.5 ? 'x' : 'o';
 let occupied = {};
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('start-btn').addEventListener('click', function(){
-        runGame();
+
+    let mainMenu = document.getElementById('main-menu');
+    let mainMenuBtn = document.getElementById('main-menu-btn');
+    let gameSection = document.getElementById('game-section');
+    let startBtn = document.getElementById('start-btn');
+
+    startBtn.addEventListener('click', function(){
+        if (mainMenu.style.display === 'block' && occupied !== {}){
+            mainMenu.style.display = 'none';
+            mainMenuBtn.style.display = 'block';
+            gameSection.style.display = 'flex';
+            document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} plays!`;
+            startBtn.innerHTML = 'reset';
+        }
+        else {
+            runGame();
+        }
     })
-    document.getElementById('game-section').style.display = 'none';
+    gameSection.style.display = 'none';
+    mainMenuBtn.style.display = 'none';
+
+    mainMenuBtn.addEventListener('click', function(){
+        mainMenu.style.display = 'block';
+        gameSection.style.display = 'none';
+        mainMenuBtn.style.display = 'none';
+        document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
+        startBtn.innerHTML = 'continue';
+    })
 });
 
 function runGame(){
     document.getElementById('main-menu').style.display = 'none';
+    document.getElementById('main-menu-btn').style.display = 'block';
     document.getElementById('game-section').style.display = 'flex';
     occupied = {};
 
@@ -81,6 +106,7 @@ function checkWin(){
             for(let cell of grid){
                 cell.removeEventListener('click', placePawn)
             }
+            document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
 
             return;
         }
@@ -96,12 +122,14 @@ function checkWin(){
             for(let cell of grid){
                 cell.removeEventListener('click', placePawn)
             }
+            document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
 
             return;
         }
     }
     if(x.length + o.length === 9){
         alert("It's a Draw! D:");
+        document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
     } 
 
 }
