@@ -89,3 +89,22 @@ body {
         font-size: 2rem;
     }
 }
+
+@media (max-width: 550px) {
+    #game-section {
+        position: relative;
+    }
+    #x-score-outer, #o-score-outer {
+        position: absolute;
+        top: 38vh;
+    }
+    #x-score-outer {
+        left: 10vw;
+    }
+    #o-score-outer {
+        right: 10vw;
+    }
+    #x-score, #o-score {
+        padding-top: 3vh;
+    }
+}
