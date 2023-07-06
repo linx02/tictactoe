@@ -5,10 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('start-btn').addEventListener('click', function(){
         runGame();
     })
+    document.getElementById('game-section').style.display = 'none';
 });
 
 function runGame(){
-
+    document.getElementById('main-menu').style.display = 'none';
+    document.getElementById('game-section').style.display = 'flex';
     occupied = {};
 
     let grid = document.getElementsByClassName('cell');
