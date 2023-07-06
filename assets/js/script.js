@@ -56,18 +56,24 @@ function checkWin(){
         let result = combo.every(num => x.includes(num));
         if (result === true) {
             alert('X won');
+            incrementScore('x');
         }
     }
     for (let combo of winCombos){
         let result = combo.every(num => o.includes(num));
         if (result === true) {
             alert('O won');
+            incrementScore('o');
         }
     }
+
 }
 
-function incrementScore(){
-    
+function incrementScore(winner){
+    let score = winner === 'x' ? document.getElementById('x-score') : document.getElementById('o-score');
+    scoreNum = parseInt(score.innerHTML);
+    scoreNum += 1;
+    score.innerHTML = scoreNum;
 }
 
 runGame();
