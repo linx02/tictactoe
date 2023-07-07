@@ -1,5 +1,6 @@
 let whoPlays = Math.random() < 0.5 ? 'x' : 'o';
 let occupied = {};
+let vsComputer = false;
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -30,6 +31,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
         startBtn.innerHTML = 'continue';
     })
+
+    document.getElementById('vs-computer-btn').addEventListener('click', function(){
+        vsComputer = true;
+    });
 });
 
 function runGame(){
@@ -53,6 +58,7 @@ function runGame(){
 }
 
 function placePawn(){
+
     if (this.innerHTML === 'x' || this.innerHTML === 'o'){
         alert('That cell is busy! Please pick another one');
         return;
@@ -65,7 +71,45 @@ function placePawn(){
 
     document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} plays!`;
 
-    checkWin();
+    if (checkWin() === true){
+        if (vsComputer === true){
+            whoPlays = whoPlays === 'x' ? 'o' : 'x';
+        }
+        return;
+    }
+
+    if (vsComputer === true){
+        computerPlays();
+    }
+}
+
+function computerPlays(){
+    let occupiedArray = [];
+    let cellToPlace;
+
+    for (let cell in occupied){
+        occupiedArray.push(parseInt((cell[cell.length - 1])));
+    }
+    console.log(occupiedArray);
+    while(true){
+
+        if (occupiedArray.length === 9){
+            break;
+        }
+
+        cellToPlace = Math.floor(Math.random() * 9) + 1;
+        console.log(cellToPlace);
+        if (!occupiedArray.includes(cellToPlace)){
+            console.log('true')
+            break;
+        }
+    }
+
+        document.getElementById(`index-${cellToPlace}`).innerHTML = whoPlays;
+        occupied[document.getElementById(`index-${cellToPlace}`).id] = whoPlays;
+        whoPlays = whoPlays === 'x' ? 'o' : 'x';
+        document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} plays!`;
+        checkWin();
 }
 
 function checkWin(){
@@ -108,7 +152,7 @@ function checkWin(){
             }
             document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
 
-            return;
+            return true;
         }
     }
     for (let combo of winCombos){
@@ -124,13 +168,13 @@ function checkWin(){
             }
             document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
 
-            return;
+            return true;
         }
     }
     if(x.length + o.length === 9){
         alert("It's a Draw! D:");
         document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
-    } 
+    }
 
 }
 
