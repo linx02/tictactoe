@@ -8,12 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let mainMenuBtn = document.getElementById('main-menu-btn');
     let gameSection = document.getElementById('game-section');
     let startBtn = document.getElementById('start-btn');
+    let settingsSection = document.getElementById('settings-section');
 
     startBtn.addEventListener('click', function(){
         if (mainMenu.style.display === 'block' && occupied !== {}){
+            console.log(gameSection.id);
             mainMenu.style.display = 'none';
             mainMenuBtn.style.display = 'block';
             gameSection.style.display = 'flex';
+            settingsSection.style.display = 'block';
             document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} plays!`;
             startBtn.innerHTML = 'reset';
         }
@@ -28,19 +31,41 @@ document.addEventListener('DOMContentLoaded', function() {
         mainMenu.style.display = 'block';
         gameSection.style.display = 'none';
         mainMenuBtn.style.display = 'none';
+        settingsSection.style.display = 'none';
         document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
         startBtn.innerHTML = 'continue';
     })
 
+    document.getElementById('two-player-btn').style.border = '1px solid black';
     document.getElementById('vs-computer-btn').addEventListener('click', function(){
+        this.style.border = '1px solid black'
+        document.getElementById('two-player-btn').style.border = 'none'
         vsComputer = true;
+        resetScore();
+        runGame();
+    });
+
+    document.getElementById('two-player-btn').addEventListener('click', function(){
+        this.style.border = '1px solid black'
+        document.getElementById('vs-computer-btn').style.border = 'none'
+        vsComputer = false;
+        resetScore();
+        runGame();
     });
 });
+
+function resetScore(){
+    document.getElementById('x-score').innerHTML = '0';
+    document.getElementById('x-score').style.color = 'black';
+    document.getElementById('o-score').innerHTML = '0';
+    document.getElementById('o-score').style.color = 'black';
+}
 
 function runGame(){
     document.getElementById('main-menu').style.display = 'none';
     document.getElementById('main-menu-btn').style.display = 'block';
     document.getElementById('game-section').style.display = 'flex';
+    document.getElementById('settings-section').style.display = 'block';
     occupied = {};
 
     let grid = document.getElementsByClassName('cell');
