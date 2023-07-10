@@ -3,7 +3,7 @@
 let whoPlays = Math.random() < 0.5 ? 'x' : 'o';
 let occupied = {};
 let vsComputer = false;
-let audioMuted = false;
+let audioMuted = true;
 
 // Setting up start screen after DOM loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -18,6 +18,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('reload-page').addEventListener('click', function(){ // Refresh icon
         location.reload();
+    })
+
+    document.getElementById('sounds-btn').addEventListener('click', function(){
+        if(audioMuted === true){
+            this.style.border = '1px solid black';
+            this.innerHTML = 'Sounds(On)';
+            audioMuted = false;
+        }
+        else if(audioMuted === false){
+            this.style.border = 'none';
+            this.innerHTML = 'Sounds (Off)';
+            audioMuted = true;
+        }
     })
 
     startBtn.addEventListener('click', function(){ // "Start" / "Rematch" button
@@ -203,25 +216,28 @@ function checkWin(){
         }
     }
 
+    // Handles game won
+    function handleWin(winner){
+        if(audioMuted === false){ // Play wingame sound
+            document.getElementById('wingame').play();
+        }
+
+        alert(`${winner} won this game! :D`);
+        incrementScore(winner);
+
+        let grid = document.getElementsByClassName('cell');
+        
+        for(let cell of grid){
+            cell.removeEventListener('click', placeMarker)
+        }
+        document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
+
+    }
     // Checking if occupied cells match winning combinations (for player X)
     for (let combo of winCombos){
         let result = combo.every(num => x.includes(num));
         if (result === true) {
-
-            if(audioMuted === false){ // Play wingame sound
-                document.getElementById('wingame').play();
-            }
-
-            alert('X won this game! :D');
-            incrementScore('x');
-
-            let grid = document.getElementsByClassName('cell');
-            
-            for(let cell of grid){
-                cell.removeEventListener('click', placeMarker)
-            }
-            document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
-
+            handleWin('x');
             return true;
         }
     }
@@ -229,21 +245,7 @@ function checkWin(){
     for (let combo of winCombos){
         let result = combo.every(num => o.includes(num));
         if (result === true) {
-
-            if(audioMuted === false){ // Play wingame sound
-                document.getElementById('wingame').play();
-            }
-
-            alert('O won this game! :D');
-            incrementScore('o');
-
-            let grid = document.getElementsByClassName('cell');
-            
-            for(let cell of grid){
-                cell.removeEventListener('click', placeMarker)
-            }
-            document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
-
+            handleWin('o')
             return true;
         }
     }

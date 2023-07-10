@@ -109,6 +109,10 @@ body {
     margin-right: 5px;
 }
 
+#start-btn:hover{
+    cursor: pointer;
+}
+
 #main-menu-btn {
     height: 75px;
     width: 75px;
@@ -123,7 +127,17 @@ body {
     cursor: pointer;
 }
 
-#start-btn:hover{
+#sounds-btn {
+    height: 50px;
+    width: 100px;
+    font-size: bold;
+    border: none;
+    background-color: #F5EE9E;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+#start-btn:hover, #main-menu-btn:hover {
     cursor: pointer;
 }
 
