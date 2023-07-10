@@ -1,7 +1,10 @@
+// Global scope variables
+
 let whoPlays = Math.random() < 0.5 ? 'x' : 'o';
 let occupied = {};
 let vsComputer = false;
 
+// Setting up start screen after DOM loaded
 document.addEventListener('DOMContentLoaded', function() {
 
     let mainMenu = document.getElementById('main-menu');
@@ -10,15 +13,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let startBtn = document.getElementById('start-btn');
     let settingsSection = document.getElementById('settings-section');
 
-    startBtn.addEventListener('click', function(){
+    // Adding event listeners to buttons
+    startBtn.addEventListener('click', function(){ // "Start" / "Rematch" button
         if (mainMenu.style.display === 'block' && occupied !== {}){
-            console.log(gameSection.id);
             mainMenu.style.display = 'none';
             mainMenuBtn.style.display = 'block';
             gameSection.style.display = 'flex';
             settingsSection.style.display = 'block';
             document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} plays!`;
-            startBtn.innerHTML = 'reset';
+            startBtn.innerHTML = 'rematch';
         }
         else {
             runGame();
@@ -27,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     gameSection.style.display = 'none';
     mainMenuBtn.style.display = 'none';
 
-    mainMenuBtn.addEventListener('click', function(){
+    mainMenuBtn.addEventListener('click', function(){ // "?" button
         mainMenu.style.display = 'block';
         gameSection.style.display = 'none';
         mainMenuBtn.style.display = 'none';
@@ -36,8 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         startBtn.innerHTML = 'continue';
     })
 
-    document.getElementById('two-player-btn').style.border = '1px solid black';
-    document.getElementById('vs-computer-btn').addEventListener('click', function(){
+    document.getElementById('vs-computer-btn').addEventListener('click', function(){ // "VS computer" button
         this.style.border = '1px solid black'
         document.getElementById('two-player-btn').style.border = 'none'
         vsComputer = true;
@@ -45,7 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
         runGame();
     });
 
-    document.getElementById('two-player-btn').addEventListener('click', function(){
+    document.getElementById('two-player-btn').style.border = '1px solid black';
+    document.getElementById('two-player-btn').addEventListener('click', function(){ // "2 Player" button
         this.style.border = '1px solid black'
         document.getElementById('vs-computer-btn').style.border = 'none'
         vsComputer = false;
@@ -54,6 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+/**
+ * Resets the scores to
+ * 0 and sets their styling to black
+ */
 function resetScore(){
     document.getElementById('x-score').innerHTML = '0';
     document.getElementById('x-score').style.color = 'black';
@@ -61,7 +69,12 @@ function resetScore(){
     document.getElementById('o-score').style.color = 'black';
 }
 
+/**
+ * The main function of the game which invokes
+ * all other functions
+ */
 function runGame(){
+    // Displaying game section and hiding main menu
     document.getElementById('main-menu').style.display = 'none';
     document.getElementById('main-menu-btn').style.display = 'block';
     document.getElementById('game-section').style.display = 'flex';
@@ -71,20 +84,26 @@ function runGame(){
     let grid = document.getElementsByClassName('cell');
     document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} starts!`
 
-    document.getElementById('start-btn').innerHTML = 'reset';
+    document.getElementById('start-btn').innerHTML = 'rematch';
 
+    // Adding event listeners to grid cells
     for(let cell of grid){
 
         cell.innerHTML = '';
 
-        cell.removeEventListener('click', placePawn);
-        cell.addEventListener('click', placePawn);
+        cell.removeEventListener('click', placeMarker);
+        cell.addEventListener('click', placeMarker);
     }
 }
 
-function placePawn(){
+/**
+ * Places the current players marker in the grid,
+ * invokes computerPlays() if vsComputer === true,
+ * invokes checkWin()
+ */
+function placeMarker(){
 
-    if (this.innerHTML === 'x' || this.innerHTML === 'o'){
+    if (this.innerHTML === 'x' || this.innerHTML === 'o'){ // Handle player clicking occupied cell
         alert('That cell is busy! Please pick another one');
         return;
     }
@@ -96,18 +115,22 @@ function placePawn(){
 
     document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} plays!`;
 
-    if (checkWin() === true){
+    if (checkWin() === true){ // Aborting if there is a winner
         if (vsComputer === true){
             whoPlays = whoPlays === 'x' ? 'o' : 'x';
         }
         return;
     }
 
-    if (vsComputer === true){
+    if (vsComputer === true){ // Computer plays if chosen
         computerPlays();
     }
 }
 
+/**
+ * Handles computer players turn
+ * using Math.random()
+ */
 function computerPlays(){
     let occupiedArray = [];
     let cellToPlace;
@@ -115,29 +138,33 @@ function computerPlays(){
     for (let cell in occupied){
         occupiedArray.push(parseInt((cell[cell.length - 1])));
     }
-    console.log(occupiedArray);
     while(true){
 
-        if (occupiedArray.length === 9){
+        if (occupiedArray.length === 9){ // Aborting if game end in draw
             break;
         }
 
-        cellToPlace = Math.floor(Math.random() * 9) + 1;
-        console.log(cellToPlace);
-        if (!occupiedArray.includes(cellToPlace)){
-            console.log('true')
+        cellToPlace = Math.floor(Math.random() * 9) + 1; // Choosing a cell to place marker
+        if (!occupiedArray.includes(cellToPlace)){ // Breaking when unoccupied cell chosen
             break;
         }
     }
 
-        document.getElementById(`index-${cellToPlace}`).innerHTML = whoPlays;
-        occupied[document.getElementById(`index-${cellToPlace}`).id] = whoPlays;
-        whoPlays = whoPlays === 'x' ? 'o' : 'x';
-        document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} plays!`;
-        checkWin();
+    // Placing marker in cell and checking for win
+    document.getElementById(`index-${cellToPlace}`).innerHTML = whoPlays;
+    occupied[document.getElementById(`index-${cellToPlace}`).id] = whoPlays;
+    whoPlays = whoPlays === 'x' ? 'o' : 'x';
+    document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} plays!`;
+    checkWin();
 }
 
+/**
+ * Checks if a player has won the game
+ * @returns true if there is a winner
+ * Handles case of game ending in a draw
+ */
 function checkWin(){
+    // Define winning combinations
     let winCombos = [
         [1, 2, 3],
         [4, 5, 6],
@@ -152,6 +179,7 @@ function checkWin(){
     let x = [];
     let o = [];
 
+    // Making array of occupied cells for easy matching
     for (let key in occupied){
         if (occupied[key] === 'x') {
             x.push(parseInt(key[key.length - 1]));
@@ -161,9 +189,7 @@ function checkWin(){
         }
     }
 
-
-    console.log(`X has : ${x} and O has : ${o}`);
-
+    // Checking if occupied cells match winning combinations (for player X)
     for (let combo of winCombos){
         let result = combo.every(num => x.includes(num));
         if (result === true) {
@@ -173,13 +199,14 @@ function checkWin(){
             let grid = document.getElementsByClassName('cell');
             
             for(let cell of grid){
-                cell.removeEventListener('click', placePawn)
+                cell.removeEventListener('click', placeMarker)
             }
             document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
 
             return true;
         }
     }
+    // Checking if occupied cells match winning combinations (for player O)
     for (let combo of winCombos){
         let result = combo.every(num => o.includes(num));
         if (result === true) {
@@ -189,13 +216,14 @@ function checkWin(){
             let grid = document.getElementsByClassName('cell');
             
             for(let cell of grid){
-                cell.removeEventListener('click', placePawn)
+                cell.removeEventListener('click', placeMarker)
             }
             document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
 
             return true;
         }
     }
+    // Checking if game end in draw
     if(x.length + o.length === 9){
         alert("It's a Draw! D:");
         document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
@@ -203,7 +231,12 @@ function checkWin(){
 
 }
 
+/**
+ * Increments the winning players score and
+ * adjusts the styling of score headings
+ */
 function incrementScore(winner){
+    // Increment score of winner
     let score = winner === 'x' ? document.getElementById('x-score') : document.getElementById('o-score');
     let oppScore = winner === 'x' ? document.getElementById('o-score') : document.getElementById('x-score');
     scoreNum = parseInt(score.innerHTML);
@@ -211,6 +244,7 @@ function incrementScore(winner){
     scoreNum += 1;
     score.innerHTML = scoreNum;
 
+    // Adjust styling based on highest score
     if (scoreNum > oppScoreNum){
         score.style.color = 'green';
         oppScore.style.color = 'red';
