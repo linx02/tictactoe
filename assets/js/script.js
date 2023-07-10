@@ -3,6 +3,7 @@
 let whoPlays = Math.random() < 0.5 ? 'x' : 'o';
 let occupied = {};
 let vsComputer = false;
+let audioMuted = false;
 
 // Setting up start screen after DOM loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -109,10 +110,18 @@ function runGame(){
 function placeMarker(){
 
     if (this.innerHTML === 'x' || this.innerHTML === 'o'){ // Handle player clicking occupied cell
+
+        if(audioMuted === false){ // Play error sound
+            document.getElementById('error').play();
+        }
         alert('That cell is busy! Please pick another one');
         return;
     }
     this.innerHTML = whoPlays;
+
+    if(audioMuted === false){ // Play scribble sound
+        document.getElementById('scribble').play();
+    }
 
     occupied[this.id] = whoPlays;
 
@@ -198,6 +207,11 @@ function checkWin(){
     for (let combo of winCombos){
         let result = combo.every(num => x.includes(num));
         if (result === true) {
+
+            if(audioMuted === false){ // Play wingame sound
+                document.getElementById('wingame').play();
+            }
+
             alert('X won this game! :D');
             incrementScore('x');
 
@@ -215,6 +229,11 @@ function checkWin(){
     for (let combo of winCombos){
         let result = combo.every(num => o.includes(num));
         if (result === true) {
+
+            if(audioMuted === false){ // Play wingame sound
+                document.getElementById('wingame').play();
+            }
+
             alert('O won this game! :D');
             incrementScore('o');
 
