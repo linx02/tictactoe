@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
     <title>Tic Tac Toe</title>
 </head>
 <body>
     <h1 id="game-heading">Tic Tac Toe</h1>
+    <!-- Main menu section / game rules section -->
     <section id="main-menu">
         <h2>Game Rules</h2>
         <ol>
@@ -40,12 +43,15 @@
             </li>
         </ol>
     </section>
+
+    <!-- Game section -->
     <section id="game-section">
         <div id="x-score-outer">
             <h2>X Score</h2>
             <h1 id="x-score">0</h1>
         </div>
 
+        <!-- Tic Tac Toe grid -->
         <div class="grid-outer">
             <div class="cell row-1 col-1" id="index-1"></div>
             <div class="cell row-1 col-2" id="index-2"></div>
@@ -63,11 +69,14 @@
             <h1 id="o-score">0</h1>
         </div>
     </section>
+
+    <!-- Start / Rematch and Main menu(?) buttons -->
     <div id="start-btn-outer">
         <button id="start-btn">Start</button>
         <button id="main-menu-btn">?</button>
     </div>
 
+    <!-- Game options section -->
     <section id="settings-section">
         <h1>Settings</h1>
         <div>
@@ -76,6 +85,7 @@
         </div>
     </section>
 
+    <!-- Load script.js -->
     <script src="assets/js/script.js"></script>
 </body>
 </html>
