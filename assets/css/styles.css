@@ -21,6 +21,19 @@ body {
     font-size: large;
 }
 
+#reload-page {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: 20px;
+    right: 10px;
+}
+
+#reload-page:hover {
+    cursor: pointer;
+    color: #F5EE9E;
+}
+
 #game-heading {
     text-align: center;
     margin-top: 5vh;

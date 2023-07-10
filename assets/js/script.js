@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let settingsSection = document.getElementById('settings-section');
 
     // Adding event listeners to buttons
+
+    document.getElementById('reload-page').addEventListener('click', function(){ // Refresh icon
+        location.reload();
+    })
+
     startBtn.addEventListener('click', function(){ // "Start" / "Rematch" button
         if (mainMenu.style.display === 'block' && occupied !== {}){
             mainMenu.style.display = 'none';
