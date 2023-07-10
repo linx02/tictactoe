@@ -128,7 +128,7 @@ function placeMarker(){
         if(audioMuted === false){ // Play error sound
             document.getElementById('error').play();
         }
-        
+
         alert('That cell is busy! Please pick another one');
         return;
     }
@@ -220,6 +220,17 @@ function checkWin(){
 
     // Handles game won
     function handleWin(winner){
+
+        let grid = document.getElementsByClassName('cell');
+
+        if(winner === 'draw'){ // Handle game end in draw
+            document.getElementById('game-heading').innerHTML = "It's a draw! D:";
+            for(let cell of grid){
+                cell.removeEventListener('click', placeMarker)
+            }
+            return;
+        }
+
         if(audioMuted === false){ // Play wingame sound
             document.getElementById('wingame').play();
         }
@@ -228,8 +239,6 @@ function checkWin(){
         document.getElementById('game-heading').style.animation = 'blink 5s'; // Start blink animation
 
         incrementScore(winner);
-
-        let grid = document.getElementsByClassName('cell');
         
         for(let cell of grid){
             cell.removeEventListener('click', placeMarker)
@@ -254,7 +263,7 @@ function checkWin(){
     }
     // Checking if game end in draw
     if(x.length + o.length === 9){
-        document.getElementById('game-heading').innerHTML = "It's a Draw! D:";
+        handleWin('draw');
     }
 
 }
