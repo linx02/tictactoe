@@ -158,6 +158,12 @@ footer {
     margin-top: 10vh;
 }
 
+#redirect-heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width: 850px) {
     .grid-outer {
         grid-template-rows: 100px 100px 100px;
@@ -171,6 +177,9 @@ footer {
     #x-score, #o-score {
         padding-top: 10vh;
         font-size: 2rem;
+    }
+    ul > li {
+        margin-right: 50px;
     }
 }
 
