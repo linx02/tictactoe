@@ -122,6 +122,15 @@ body {
     border-right: 2px solid black;
 }
 
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15vh;
+    background-color: #c1bee3;
+    margin-top: 10vh;
+}
+
 @media (max-width: 850px) {
     .grid-outer {
         grid-template-rows: 100px 100px 100px;
