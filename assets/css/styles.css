@@ -192,3 +192,24 @@ footer {
         padding-top: 3vh;
     }
 }
+
+@keyframes blink{
+    0% {
+      color: green;
+    }
+    20% {
+      color: black;
+    }
+    40% {
+      color: green;
+    }
+    60% {
+      color: black;
+    }
+    80% {
+      color: green;
+    }
+    100% {
+      color: black;
+    }
+  }

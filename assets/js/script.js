@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         location.reload();
     })
 
-    document.getElementById('sounds-btn').addEventListener('click', function(){
+    document.getElementById('sounds-btn').addEventListener('click', function(){ // Sounds button
         if(audioMuted === true){
             this.style.border = '1px solid black';
             this.innerHTML = 'Sounds(On)';
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         else if(audioMuted === false){
             this.style.border = 'none';
-            this.innerHTML = 'Sounds (Off)';
+            this.innerHTML = 'Sounds(Off)';
             audioMuted = true;
         }
     })
@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             startBtn.innerHTML = 'rematch';
         }
         else {
+            document.getElementById('game-heading').style.animation = 'none'; // Reset blink animation
             runGame();
         }
     })
@@ -127,6 +128,7 @@ function placeMarker(){
         if(audioMuted === false){ // Play error sound
             document.getElementById('error').play();
         }
+        
         alert('That cell is busy! Please pick another one');
         return;
     }
@@ -222,7 +224,9 @@ function checkWin(){
             document.getElementById('wingame').play();
         }
 
-        alert(`${winner} won this game! :D`);
+        document.getElementById('game-heading').innerHTML = `${winner.toUpperCase()} won this game! :D`;
+        document.getElementById('game-heading').style.animation = 'blink 5s'; // Start blink animation
+
         incrementScore(winner);
 
         let grid = document.getElementsByClassName('cell');
@@ -230,7 +234,6 @@ function checkWin(){
         for(let cell of grid){
             cell.removeEventListener('click', placeMarker)
         }
-        document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
 
     }
     // Checking if occupied cells match winning combinations (for player X)
@@ -251,8 +254,7 @@ function checkWin(){
     }
     // Checking if game end in draw
     if(x.length + o.length === 9){
-        alert("It's a Draw! D:");
-        document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
+        document.getElementById('game-heading').innerHTML = "It's a Draw! D:";
     }
 
 }
