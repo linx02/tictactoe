@@ -11,79 +11,87 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    <h1 id="game-heading">Tic Tac Toe</h1>
+    <header>
+        <h1 id="game-heading">Tic Tac Toe</h1>
+    </header>
     <!-- Main menu section / game rules section -->
-    <section id="main-menu">
-        <h2>Game Rules</h2>
-        <ol>
-            <li>Gameplay:
-                <ul>
-                    <li>The game begins with Player 1 taking the first turn.</li>
-                    <li>Players take turns placing their respective symbols (X or O) on an empty cell of the grid.</li>
-                    <li>Each player can only place their symbol in an unoccupied cell.</li>
-                </ul>
-            </li>
-            <li>Objective:
-                <ul>
-                    <li>The goal is to be the first player to form a horizontal, vertical, or diagonal line of three of their own symbols.</li>
-                    <li>The line can be formed in any direction: horizontally, vertically, or diagonally.</li>
-                </ul>
-            </li>
-            <li>Winning conditions:
-                <ul>
-                    <li>If a player successfully fills any horizontal, vertical, or diagonal line with their symbols, they win the game.</li>
-                    <li>If all cells are occupied and no player has formed a winning line, the game ends in a draw.</li>
-                </ul>
-            </li>
-            <li>End of game:
-                <ul>
-                    <li>The game ends when one player forms a winning line or when the game reaches a draw.</li>
-                    <li>After the game ends, players may choose to restart and play again.</li>
-                </ul>
-            </li>
-        </ol>
-    </section>
+    <main>
+        <section id="main-menu">
+            <h2>Game Rules</h2>
+            <ol>
+                <li>Gameplay:
+                    <ul>
+                        <li>The game begins with Player 1 taking the first turn.</li>
+                        <li>Players take turns placing their respective symbols (X or O) on an empty cell of the grid.</li>
+                        <li>Each player can only place their symbol in an unoccupied cell.</li>
+                    </ul>
+                </li>
+                <li>Objective:
+                    <ul>
+                        <li>The goal is to be the first player to form a horizontal, vertical, or diagonal line of three of their own symbols.</li>
+                        <li>The line can be formed in any direction: horizontally, vertically, or diagonally.</li>
+                    </ul>
+                </li>
+                <li>Winning conditions:
+                    <ul>
+                        <li>If a player successfully fills any horizontal, vertical, or diagonal line with their symbols, they win the game.</li>
+                        <li>If all cells are occupied and no player has formed a winning line, the game ends in a draw.</li>
+                    </ul>
+                </li>
+                <li>End of game:
+                    <ul>
+                        <li>The game ends when one player forms a winning line or when the game reaches a draw.</li>
+                        <li>After the game ends, players may choose to restart and play again.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
 
-    <!-- Game section -->
-    <section id="game-section">
-        <div id="x-score-outer">
-            <h2>X Score</h2>
-            <h1 id="x-score">0</h1>
+        <!-- Game section -->
+        <section id="game-section">
+            <div id="x-score-outer">
+                <h2>X Score</h2>
+                <h1 id="x-score">0</h1>
+            </div>
+
+            <!-- Tic Tac Toe grid -->
+            <div class="grid-outer">
+                <div class="cell row-1 col-1" id="index-1"></div>
+                <div class="cell row-1 col-2" id="index-2"></div>
+                <div class="cell row-1 col-3" id="index-3"></div>
+                <div class="cell row-2 col-1" id="index-4"></div>
+                <div class="cell row-2 col-2" id="index-5"></div>
+                <div class="cell row-2 col-3" id="index-6"></div>
+                <div class="cell row-3 col-1" id="index-7"></div>
+                <div class="cell row-3 col-2" id="index-8"></div>
+                <div class="cell row-3 col-3" id="index-9"></div>
+            </div>
+
+            <div id="o-score-outer">
+                <h2>O Score</h2>
+                <h1 id="o-score">0</h1>
+            </div>
+        </section>
+
+        <!-- Start / Rematch and Main menu(?) buttons -->
+        <div id="start-btn-outer">
+            <button id="start-btn">Start</button>
+            <button id="main-menu-btn">?</button>
         </div>
 
-        <!-- Tic Tac Toe grid -->
-        <div class="grid-outer">
-            <div class="cell row-1 col-1" id="index-1"></div>
-            <div class="cell row-1 col-2" id="index-2"></div>
-            <div class="cell row-1 col-3" id="index-3"></div>
-            <div class="cell row-2 col-1" id="index-4"></div>
-            <div class="cell row-2 col-2" id="index-5"></div>
-            <div class="cell row-2 col-3" id="index-6"></div>
-            <div class="cell row-3 col-1" id="index-7"></div>
-            <div class="cell row-3 col-2" id="index-8"></div>
-            <div class="cell row-3 col-3" id="index-9"></div>
-        </div>
+        <!-- Game options section -->
+        <section id="settings-section">
+            <h1>Settings</h1>
+            <div>
+                <button id="two-player-btn">2 Player</button>
+                <button id="vs-computer-btn">VS Computer</button>
+            </div>
+        </section>
+    </main>
 
-        <div id="o-score-outer">
-            <h2>O Score</h2>
-            <h1 id="o-score">0</h1>
-        </div>
-    </section>
-
-    <!-- Start / Rematch and Main menu(?) buttons -->
-    <div id="start-btn-outer">
-        <button id="start-btn">Start</button>
-        <button id="main-menu-btn">?</button>
-    </div>
-
-    <!-- Game options section -->
-    <section id="settings-section">
-        <h1>Settings</h1>
-        <div>
-            <button id="two-player-btn">2 Player</button>
-            <button id="vs-computer-btn">VS Computer</button>
-        </div>
-    </section>
+    <footer>
+        <p>Check out my <a href="https://github.com/linx02">GitHub!</a>
+    </footer>
 
     <!-- Load script.js -->
     <script src="assets/js/script.js"></script>
