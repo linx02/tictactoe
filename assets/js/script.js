@@ -4,6 +4,16 @@ let whoPlays = Math.random() < 0.5 ? 'x' : 'o';
 let occupied = {};
 let vsComputer = false;
 let audioMuted = true;
+let winCombos = [ // Winning combinations
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [3, 5, 7]
+];
 
 // Setting up start screen after DOM loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -165,7 +175,9 @@ function computerPlays(){
     let cellToPlace;
 
     for (let cell in occupied){
-        occupiedArray.push(parseInt((cell[cell.length - 1])));
+        if(occupied.hasOwnProperty(cell)){
+            occupiedArray.push(parseInt((cell[cell.length - 1])));
+        }
     }
     while(true){
 
@@ -193,17 +205,6 @@ function computerPlays(){
  * Handles case of game ending in a draw
  */
 function checkWin(){
-    // Define winning combinations
-    let winCombos = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-        [1, 4, 7],
-        [2, 5, 8],
-        [3, 6, 9],
-        [1, 5, 9],
-        [3, 5, 7]
-    ];
     
     let x = [];
     let o = [];
@@ -247,7 +248,13 @@ function checkWin(){
     }
     // Checking if occupied cells match winning combinations (for player X)
     for (let combo of winCombos){
-        let result = combo.every(num => x.includes(num));
+        let result = true;
+        for (let num of combo) {
+            if (!x.includes(num)) {
+            result = false;
+            break;
+            }
+        }
         if (result === true) {
             handleWin('x');
             return true;
@@ -255,7 +262,13 @@ function checkWin(){
     }
     // Checking if occupied cells match winning combinations (for player O)
     for (let combo of winCombos){
-        let result = combo.every(num => o.includes(num));
+        let result = true;
+        for (let num of combo) {
+            if (!o.includes(num)) {
+            result = false;
+            break;
+            }
+        }
         if (result === true) {
             handleWin('o');
             return true;

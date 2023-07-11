@@ -22,6 +22,7 @@ Tic Tac Toe is a web-based version of the classic tic tac toe game that aims to 
   - The landing page includes a section explaining the game rules in an easy-to-read list format.
   - This section introduces the user to the game and thoroughly explains it's rules.
   - This section is always accessible to the user even when the game has begun.
+  - When this section is accessed during the game, the game state is not lost.
 
 ![Game Rules Section](media/gamerules.png)
 
@@ -72,6 +73,10 @@ Tic Tac Toe is a web-based version of the classic tic tac toe game that aims to 
     - Allows user to play vs the computer.
     - Provides the user with a way to play alone without the need of a friend.
 
+  - Sounds button
+    - Allows users to toggle sound on/off.
+    - Provides a way for users to have game sounds which makes an immersive experience.
+
 ![Settings](media/settings.png)
 
 - __The Footer__
@@ -82,77 +87,81 @@ Tic Tac Toe is a web-based version of the classic tic tac toe game that aims to 
 
 ![Footer](media/footer.png)
 
-For some/all of your features, you may choose to reference the specific project files that implement them.
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
-
 ### Features Left to Implement
 
 - Bigger grid
   - This feature would allow the user to play on a bigger grid than the regular 3x3 grid.
   - This feature would provide the user with a way to increase the difficulty of the game.
 
+- Nicknames
+  - This feature would allow the user to input nicknames instead of being referred to as Player X and Y.
+  - This feature would add a personal touch to the users experience.
+
 ## Testing 
 
 ### Validator Testing 
 
 - HTML
-  - Warnings returned when passing through the official [W3C validator]()
+  ##### Warnings returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Flinx02.github.io%2Ftictactoe%2F)
 
-  1. Warning: Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools).
+  1. (Fixed) Warning: Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools).
     - From line 76, column 17; to line 76, column 33
+      - Resolved by switching h1 tag to h2 tag
   
-  2. Warning: Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools).
+  2. (Fixed) Warning: Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools).
     - From line 58, column 17; to line 58, column 33
+      - Resolved by switching h1 tag to h2 tag
 
-  3. Warning: Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools).
+  3. (Fixed) Warning: Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools).
     - From line 88, column 13; to line 88, column 16
-
-  All warnings were resolved by switching above h1 tags to h2 tags
+      - Resolved by switching h1 tag to h2 tag
 
   - No errors were returned.
     
 
 - CSS
-  - Errors returned when passing through the official [(Jigsaw) validator]()
+  ##### Errors returned when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flinx02.github.io%2Ftictactoe%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
     
-    - Line: 133 #sounds-btn, ValueError : font-size: bold is not a font-size-value
-    - Resolved by changing font-size: bold; to font-size: 0.8rem;
+    1. (Fixed) Line: 133 #sounds-btn, ValueError : font-size: bold is not a font-size-value
+      - Resolved by changing font-size: bold; to font-size: 0.8rem;
 
 - JavaScript
- - Warnings returned when passing through the [Jshint validator]()
+ - Warnings returned when passing through the [Jshint validator](https://jshint.com/)
 
-- 15 Warnings	
-21	Missing semicolon.
-34	Missing semicolon.
-49	Missing semicolon.
-60	Missing semicolon.
-63	Missing semicolon.
-64	Missing semicolon.
-72	Missing semicolon.
-73	Missing semicolon.
-105	Missing semicolon.
-167	The body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype.
-229	Missing semicolon.
-244	Missing semicolon.
-250	Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (x)
-258	Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (o)
-260	Missing semicolon.
+- (Fixed) 15 Warnings	
+1. 21	Missing semicolon.
+2. 34	Missing semicolon.
+3. 49	Missing semicolon.
+4. 60	Missing semicolon.
+5. 63	Missing semicolon.
+6. 64	Missing semicolon.
+7. 72	Missing semicolon.
+8. 73	Missing semicolon.
+9. 105 Missing semicolon.
+10. 167	The body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype.
+11. 229	Missing semicolon.
+12. 244	Missing semicolon.
+13. 250	Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (x)
+14. 258	Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (o)
+15. 260	Missing semicolon.
 
-- Two undefined variables	
-279	scoreNum
-281	scoreNum
-282	scoreNum
-285	scoreNum
-288	scoreNum
-280	oppScoreNum
-285	oppScoreNum
-288	oppScoreNum
+- Fixed warnings were resolved by:
+  - Adding missing semicolons.
+  - Checking that variable key is a property of the object itself using hasOwnPropery()
+  - Using for loop for checking win instead of every() method
 
-- Warnings were resolved by:
-    - Adding missing semicolons
-    - defining scoreNum & oppScoreNum using let keyword
-    - .......
+- (Fixed) Two undefined variables	
+1. 279	scoreNum
+2. 281	scoreNum
+3. 282	scoreNum
+4. 285	scoreNum
+5. 288	scoreNum
+6. 280	oppScoreNum
+7. 285	oppScoreNum
+8. 288	oppScoreNum
+
+- Fixed warnings were resolved by:
+    - Defining scoreNum & oppScoreNum using let keyword
 
 
 - Accessibility
