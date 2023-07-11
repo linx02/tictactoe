@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('reload-page').addEventListener('click', function(){ // Refresh icon
         location.reload();
-    })
+    });
 
     document.getElementById('sounds-btn').addEventListener('click', function(){ // Sounds button
         if(audioMuted === true){
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.innerHTML = 'Sounds(Off)';
             audioMuted = true;
         }
-    })
+    });
 
     startBtn.addEventListener('click', function(){ // "Start" / "Rematch" button
         if (mainMenu.style.display === 'block' && occupied !== {}){
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('game-heading').style.animation = 'none'; // Reset blink animation
             runGame();
         }
-    })
+    });
     gameSection.style.display = 'none';
     mainMenuBtn.style.display = 'none';
 
@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
         settingsSection.style.display = 'none';
         document.getElementById('game-heading').innerHTML = 'Tic Tac Toe';
         startBtn.innerHTML = 'continue';
-    })
+    });
 
     document.getElementById('vs-computer-btn').addEventListener('click', function(){ // "VS computer" button
-        this.style.border = '1px solid black'
-        document.getElementById('two-player-btn').style.border = 'none'
+        this.style.border = '1px solid black';
+        document.getElementById('two-player-btn').style.border = 'none';
         vsComputer = true;
         resetScore();
         runGame();
@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('two-player-btn').style.border = '1px solid black';
     document.getElementById('two-player-btn').addEventListener('click', function(){ // "2 Player" button
-        this.style.border = '1px solid black'
-        document.getElementById('vs-computer-btn').style.border = 'none'
+        this.style.border = '1px solid black';
+        document.getElementById('vs-computer-btn').style.border = 'none';
         vsComputer = false;
         resetScore();
         runGame();
@@ -102,7 +102,7 @@ function runGame(){
     occupied = {};
 
     let grid = document.getElementsByClassName('cell');
-    document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} starts!`
+    document.getElementById('game-heading').innerHTML = `${whoPlays.toUpperCase()} starts!`;
 
     document.getElementById('start-btn').innerHTML = 'rematch';
 
@@ -226,7 +226,7 @@ function checkWin(){
         if(winner === 'draw'){ // Handle game end in draw
             document.getElementById('game-heading').innerHTML = "It's a draw! D:";
             for(let cell of grid){
-                cell.removeEventListener('click', placeMarker)
+                cell.removeEventListener('click', placeMarker);
             }
             return;
         }
@@ -241,7 +241,7 @@ function checkWin(){
         incrementScore(winner);
         
         for(let cell of grid){
-            cell.removeEventListener('click', placeMarker)
+            cell.removeEventListener('click', placeMarker);
         }
 
     }
@@ -257,7 +257,7 @@ function checkWin(){
     for (let combo of winCombos){
         let result = combo.every(num => o.includes(num));
         if (result === true) {
-            handleWin('o')
+            handleWin('o');
             return true;
         }
     }
@@ -276,8 +276,8 @@ function incrementScore(winner){
     // Increment score of winner
     let score = winner === 'x' ? document.getElementById('x-score') : document.getElementById('o-score');
     let oppScore = winner === 'x' ? document.getElementById('o-score') : document.getElementById('x-score');
-    scoreNum = parseInt(score.innerHTML);
-    oppScoreNum = parseInt(oppScore.innerHTML);
+    let scoreNum = parseInt(score.innerHTML);
+    let oppScoreNum = parseInt(oppScore.innerHTML);
     scoreNum += 1;
     score.innerHTML = scoreNum;
 
