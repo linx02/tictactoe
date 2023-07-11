@@ -94,7 +94,7 @@ Tic Tac Toe is a web-based version of the classic tic tac toe game that aims to 
   - This feature would provide the user with a way to increase the difficulty of the game.
 
 - Nicknames
-  - This feature would allow the user to input nicknames instead of being referred to as Player X and Y.
+  - This feature would allow the user to input nicknames instead of being referred to as Player X and O.
   - This feature would add a personal touch to the users experience.
 
 ## Testing 
@@ -106,66 +106,68 @@ Tic Tac Toe is a web-based version of the classic tic tac toe game that aims to 
 
   1. (Fixed) Warning: Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools).
     - From line 76, column 17; to line 76, column 33
-      - Resolved by switching h1 tag to h2 tag
   
   2. (Fixed) Warning: Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools).
     - From line 58, column 17; to line 58, column 33
-      - Resolved by switching h1 tag to h2 tag
 
   3. (Fixed) Warning: Consider using the h1 element as a top-level heading only (all h1 elements are treated as top-level headings by many screen readers and other tools).
     - From line 88, column 13; to line 88, column 16
-      - Resolved by switching h1 tag to h2 tag
+  
+  - Warnings were resolved by:
+    - Switching h1 tags to h2 tags
 
-  - No errors were returned.
+  ##### No errors were returned.
     
 
 - CSS
   ##### Errors returned when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Flinx02.github.io%2Ftictactoe%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
     
     1. (Fixed) Line: 133 #sounds-btn, ValueError : font-size: bold is not a font-size-value
-      - Resolved by changing font-size: bold; to font-size: 0.8rem;
+    
+    - Resolved by:
+      - Changing font-size: bold; to font-size: 0.8rem;
 
 - JavaScript
- - Warnings returned when passing through the [Jshint validator](https://jshint.com/)
+ ##### Warnings returned when passing through the [Jshint validator](https://jshint.com/)
 
 - (Fixed) 15 Warnings	
-1. 21	Missing semicolon.
-2. 34	Missing semicolon.
-3. 49	Missing semicolon.
-4. 60	Missing semicolon.
-5. 63	Missing semicolon.
-6. 64	Missing semicolon.
-7. 72	Missing semicolon.
-8. 73	Missing semicolon.
-9. 105 Missing semicolon.
-10. 167	The body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype.
-11. 229	Missing semicolon.
-12. 244	Missing semicolon.
-13. 250	Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (x)
-14. 258	Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (o)
-15. 260	Missing semicolon.
+  1. 21	Missing semicolon.
+  2. 34	Missing semicolon.
+  3. 49	Missing semicolon.
+  4. 60	Missing semicolon.
+  5. 63	Missing semicolon.
+  6. 64	Missing semicolon.
+  7. 72	Missing semicolon.
+  8. 73	Missing semicolon.
+  9. 105 Missing semicolon.
+  10. 167	The body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype.
+  11. 229	Missing semicolon.
+  12. 244	Missing semicolon.
+  13. 250	Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (x)
+  14. 258	Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (o)
+  15. 260	Missing semicolon.
 
-- Fixed warnings were resolved by:
+- Warnings were resolved by:
   - Adding missing semicolons.
   - Checking that variable key is a property of the object itself using hasOwnPropery()
   - Using for loop for checking win instead of every() method
 
 - (Fixed) Two undefined variables	
-1. 279	scoreNum
-2. 281	scoreNum
-3. 282	scoreNum
-4. 285	scoreNum
-5. 288	scoreNum
-6. 280	oppScoreNum
-7. 285	oppScoreNum
-8. 288	oppScoreNum
+  1. 279	scoreNum
+  2. 281	scoreNum
+  3. 282	scoreNum
+  4. 285	scoreNum
+  5. 288	scoreNum
+  6. 280	oppScoreNum
+  7. 285	oppScoreNum
+  8. 288	oppScoreNum
 
-- Fixed warnings were resolved by:
+- Warnings were resolved by:
     - Defining scoreNum & oppScoreNum using let keyword
 
 
 - Accessibility
-  - No errors were returned when passing through the [WAVE validator](hhttps://wave.webaim.org/report#/https://linx02.github.io/tictactoe/)
+  ##### No errors were returned when passing through the [WAVE validator](https://wave.webaim.org/report#/https://linx02.github.io/tictactoe/)
 
 ### Unfixed Bugs
 
