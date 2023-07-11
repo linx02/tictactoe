@@ -116,7 +116,7 @@ Tic Tac Toe is a web-based version of the classic tic tac toe game that aims to 
   - Warnings were resolved by:
     - Switching h1 tags to h2 tags
 
-  ##### No errors were returned.
+  - No errors were returned.
     
 
 - CSS
@@ -128,7 +128,7 @@ Tic Tac Toe is a web-based version of the classic tic tac toe game that aims to 
       - Changing font-size: bold; to font-size: 0.8rem;
 
 - JavaScript
- ##### Warnings returned when passing through the [Jshint validator](https://jshint.com/)
+  ##### Warnings returned when passing through the [Jshint validator](https://jshint.com/)
 
 - (Fixed) 15 Warnings	
   1. 21	Missing semicolon.
