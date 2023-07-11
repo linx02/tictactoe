@@ -169,6 +169,9 @@ Tic Tac Toe is a web-based version of the classic tic tac toe game that aims to 
 - Accessibility
   ##### No errors were returned when passing through the [WAVE validator](https://wave.webaim.org/report#/https://linx02.github.io/tictactoe/)
 
+  ##### Lighthouse Summary:
+  ![Lighthouse summary](media/lighthouse.png)
+  
 ### Unfixed Bugs
 
 - No found bugs left unfixed.
